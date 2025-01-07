@@ -1,11 +1,8 @@
 import random
-import time
-
 
 def generate_agent_name():
     agent_names = ["PoppletonBot", "PoppyBot", "Poppleton Assistant", "Poppleton Help"]
     return random.choice(agent_names)
-
 
 def generate_random_response():
     responses = [
@@ -16,22 +13,6 @@ def generate_random_response():
     ]
     return random.choice(responses)
 
-
-def log_conversation(user_name, user_input, agent_response):
-    with open("chat_log.txt", "a") as log_file:
-        log_file.write(f"User ({user_name}): {user_input}\n")
-        log_file.write(f"Agent Response: {agent_response}\n")
-        log_file.write("-" * 40 + "\n")
-
-
-def random_disconnect():
-    if random.random() < 0.2:
-        print("Oops! The system has failed. Try again later.")
-        time.sleep(2)
-        return True
-    return False
-
-
 def main():
     greetings = ["Please state your name.", "What's your name?", "Hello there! What's your name?"]
     print(random.choice(greetings))
@@ -40,9 +21,6 @@ def main():
 
     while True:
         user_input = input().strip().lower()
-
-        if random_disconnect():
-            break
 
         if user_input in ["bye", "quit", "exit"]:
             print("Goodbye!")
@@ -174,10 +152,7 @@ def main():
         else:
             response = generate_random_response()
 
-        log_conversation(user_name, user_input, response)
-
         print(response)
-
 
 if __name__ == "__main__":
     main()
